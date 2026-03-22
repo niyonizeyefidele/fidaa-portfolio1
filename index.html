@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fidele Portfolio Login</title>
+    <style>
+        /* Full page gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #84a6c9, #66a6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background 1s ease;
+        }
+
+        /* Login box */
+        #loginDiv {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #loginDiv.hide {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background-color: #66a6ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #557ed4;
+        }
+
+        #error {
+            margin-top: 10px;
+            color: red;
+        }
+
+        /* Portfolio content (hidden initially) */
+        #contentDiv {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Centered headings in content */
+        #contentDiv h1, #contentDiv h2, #contentDiv p, #contentDiv ul {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Form -->
+    <div id="loginDiv">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <button onclick="login()">Login</button>
+<p id="error"></p>
+<p>Don't have an account? <a href="register.html">Register</a></p>
+
+    </div>
+
+    <!-- Portfolio Content -->
+    <div id="contentDiv">
+        <h1>Fidele Portfolio</h1>
+        <p>Welcome! You are logged in.</p>
+
+        <h2>About Me</h2>
+        <p>I am learning web development and building my future career.</p>
+
+        <h2>My Skills</h2>
+        <ul>
+            <li>HTML</li>
+            <li>Problem Solving</li>
+            <li>Communication</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Email: your@email.com</p>
+    </div>
+   <script>
+    function login() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+
+      var savedUser = localStorage.getItem("savedUser");
+var savedPass = localStorage.getItem("savedPass");
+
+if(user === savedUser && pass === savedPass) {
+
+
+            // Save login status
+            localStorage.setItem("loggedIn", "true");
+
+            window.location.href = "page2.html";
+
+        } else {
+            document.getElementById("error").innerText = "Wrong username or password!";
+        }
+    }
+
+    // Auto redirect if already logged in
+    if(localStorage.getItem("loggedIn") === "true") {
+        window.location.href = "page2.html";
+    }
+
+
+
+</script>
+</body>
+</html>
